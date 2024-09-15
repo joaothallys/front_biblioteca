@@ -1,0 +1,36 @@
+form {
+    width: 500px;
+    height: 30vh;
+    margin: 80px auto;
+}
+
+.custom-btn {
+    font-weight: 500;
+    background-color: transparent;
+    border: 1px solid #007bff;
+    color: #007bff;
+    padding: 10px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.6s ease;
+
+    &:hover {
+        background-color: #007bff0e;
+        color: #000000;
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.105);
+    }
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+input[type="button"] {
+    margin-right: 10px;
+
+}
+
+.table {
+    width: 500px;
+    margin: 80px auto;
+}
