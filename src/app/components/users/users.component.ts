@@ -15,9 +15,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './users.component.html',
   styleUrl: './users.component.css',
 })
-export class UsersComponent {
-  // Objeto de formulário
 
+export class UsersComponent {
   formulario = new FormGroup({
     nome: new FormControl('', [Validators.required, Validators.minLength(3)]),
     idade: new FormControl(null, [
@@ -28,27 +27,17 @@ export class UsersComponent {
     cidade: new FormControl('', [Validators.required, Validators.minLength(3)]),
   });
 
-  // Visibilidade dos botões
   btnCdastrar: boolean = true;
 
-  // Vetor
   vetor: Pessoa[] = [];
-
-  // Armazenar índice da pessoa selecionada
   indice: number = -1;
 
-  // Função de cadastro
   cadastrar() {
-    // Cadastro no vetor
     this.vetor.push(this.formulario.value as Pessoa);
-
-    // Limpeza dos inputs
     this.formulario.reset();
   }
 
-  // Função de seleção
   selecionar(indice: number) {
-    // Atribuir o índice da pessoa
     this.indice = indice;
     this.formulario.setValue({
       nome: this.vetor[indice].nome,
@@ -56,25 +45,21 @@ export class UsersComponent {
       cidade: this.vetor[indice].cidade,
     });
 
-    // Visibilidade dos botões
     this.btnCdastrar = false;
   }
 
-  // Função de alteração
   alterar() {
     this.vetor[this.indice] = this.formulario.value as Pessoa;
     this.formulario.reset();
     this.btnCdastrar = true;
   }
 
-  // Função de remoção
   remover() {
     this.vetor.splice(this.indice, 1);
     this.formulario.reset();
     this.btnCdastrar = true;
   }
 
-  // Função para cancelar
   cancelar() {
     this.formulario.reset();
     this.btnCdastrar = true;
