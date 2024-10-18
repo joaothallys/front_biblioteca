@@ -1,53 +1,53 @@
-<form [formGroup]="formulario">
+<div class="form-container" style="background-color: #f9f9f9; padding: 20px; border-radius: 5px;">
+    <form [formGroup]="formulario">
+        <div *ngIf="formulario.get('nome').hasError('required') && formulario.get('nome').touched">
+            <p class="alert alert-warning">O campo nome é obrigatório!</p>
+        </div>
 
-    <!--NOME-->
-    @if (formulario.get('nome').hasError('required') && formulario.get('nome').touched) {
-    <p class="alert alert-warning">O campo nome é obrigatório!</p>
-    }
+        <div *ngIf="formulario.get('nome').hasError('minlength') && formulario.get('nome').touched">
+            <p class="alert alert-warning">O campo nome precisa conter pelo menos 3 caracteres!</p>
+        </div>
 
-    @if (formulario.get('nome').hasError('minlength') && formulario.get('nome').touched) {
-    <p class="alert alert-warning">O campo nome precisa conter pelo menos 3 caracteres!</p>
-    }
+        <input type="text" formControlName="nome" placeholder="Nome" class="form-control">
 
-    <input type="text" formControlName="nome" placeholder="Nome" class="form-control">
+        <div *ngIf="formulario.get('idade').hasError('required') && formulario.get('idade').touched">
+            <p class="alert alert-warning">O campo idade é obrigatório!</p>
+        </div>
 
-    <!--IDADE-->
-    @if (formulario.get('idade').hasError('required') && formulario.get('idade').touched) {
-    <p class="alert alert-warning">O campo idade é obrigatório!</p>
-    }
+        <div *ngIf="formulario.get('idade').hasError('min') && formulario.get('idade').touched">
+            <p class="alert alert-warning">O campo idade não aceita números inferiores a 0!</p>
+        </div>
 
-    @if (formulario.get('idade').hasError('min') && formulario.get('idade').touched) {
-    <p class="alert alert-warning">O campo idade não aceita números inferiores a 120!</p>
-    }
+        <div *ngIf="formulario.get('idade').hasError('max') && formulario.get('idade').touched">
+            <p class="alert alert-warning">O campo idade não aceita números superiores a 120!</p>
+        </div>
 
-    @if (formulario.get('idade').hasError('max') && formulario.get('idade').touched) {
-    <p class="alert alert-warning">O campo idade não aceita números superiores a 0!</p>
-    }
+        <input type="number" formControlName="idade" placeholder="Idade" class="form-control">
 
-    <input type="number" formControlName="idade" placeholder="Idade" class="form-control">
+        <div *ngIf="formulario.get('cidade').hasError('required') && formulario.get('cidade').touched">
+            <p class="alert alert-warning">O campo cidade é obrigatório!</p>
+        </div>
 
-    <!--CIDADE-->
-    @if (formulario.get('cidade').hasError('required') && formulario.get('cidade').touched) {
-    <p class="alert alert-warning">O campo cidade é obrigatório!</p>
-    }
+        <div *ngIf="formulario.get('cidade').hasError('minlength') && formulario.get('cidade').touched">
+            <p class="alert alert-warning">O campo cidade precisa conter pelo menos 3 caracteres!</p>
+        </div>
 
-    @if (formulario.get('cidade').hasError('minlength') && formulario.get('cidade').touched) {
-    <p class="alert alert-warning">O campo cidade precisa conter pelo menos 3 caracteres!</p>
-    }
+        <input type="text" formControlName="cidade" placeholder="Cidade" class="form-control">
 
-    <input type="text" formControlName="cidade" placeholder="Cidade" class="form-control">
+        <div *ngIf="btnCdastrar">
+            <input type="button" value="Cadastrar" (click)="cadastrar()" class="btn custom-btn"
+                [disabled]="formulario.invalid">
+        </div>
+        <div *ngIf="!btnCdastrar">
+            <input type="button" value="Alterar" (click)="alterar()" class="btn custom-btn"
+                [disabled]="formulario.invalid">
+            <input type="button" value="Remover" (click)="remover()" class="btn custom-btn">
+            <input type="button" value="Cancelar" (click)="cancelar()" class="btn custom-btn">
+        </div>
+    </form>
+</div>
 
-    @if (btnCdastrar) {
-    <input type="button" value="Cadastrar" (click)="cadastrar()" class="btn custom-btn" [disabled]="formulario.invalid">
-    } @else {
-    <input type="button" value="Alterar" (click)="alterar()" class="btn custom-btn" [disabled]="formulario.invalid">
-    <input type="button" value="Remover" (click)="remover()" class="btn custom-btn">
-    <input type="button" value="Cancelar" (click)="cancelar()" class="btn custom-btn">
-    }
-
-</form>
-
-<table class="table table-success table-hover">
+<table class="table table-success table-hover" style="background-color: #f9f9f9;">
     <thead>
         <tr>
             <th>#</th>
@@ -57,7 +57,6 @@
             <th>Selecionar</th>
         </tr>
     </thead>
-
     <tbody>
         <tr *ngFor="let v of vetor; index as indice">
             <td>{{indice + 1}}</td>

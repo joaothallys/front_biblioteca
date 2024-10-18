@@ -1,7 +1,11 @@
-form {
+.form-container {
     width: 500px;
-    height: 30vh;
-    margin: 80px auto;
+    height: auto;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .custom-btn {
@@ -13,12 +17,12 @@ form {
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.6s ease;
+}
 
-    &:hover {
-        background-color: #007bff0e;
-        color: #000000;
-        box-shadow: 0 0 10px rgba(0, 123, 255, 0.105);
-    }
+.custom-btn:hover {
+    background-color: #007bff0e;
+    color: #000000;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.105);
 }
 
 input {
@@ -27,10 +31,34 @@ input {
 
 input[type="button"] {
     margin-right: 10px;
-
 }
 
 .table {
     width: 500px;
-    margin: 80px auto;
+    margin: 20px auto;
+    background-color: #f8f9fa;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+}
+
+.table th {
+    background-color: #e9ecef;
+}
+
+.table tr:hover {
+    background-color: #e2e6ea;
+}
+
+.campo-adicional {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
 }
