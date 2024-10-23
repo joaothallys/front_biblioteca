@@ -1,0 +1,81 @@
+<div class="max-w-7xl mx-auto px-4">
+  <h1 class="titulo-pagina">Biblioteca</h1>
+
+  <div class="flex justify-between mb-4">
+    <div>
+      <button mat-raised-button color="primary" (click)="alternarModoExibicao()" class="sombra-botao">
+        Alterar modo
+      </button>
+    </div>
+
+    <div>
+      <button mat-raised-button color="primary" (click)="irParaCadastro()" class="sombra-botao">
+        Novo Livro
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="modoExibicao === 'lista'">
+    <table mat-table [dataSource]="livros" class="mat-elevation-z8 w-full max-w-4xl mx-auto my-5">
+
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef class="header-bold"> Nome </th>
+        <td mat-cell *matCellDef="let livro"> {{livro.nome}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dt_publicacao">
+        <th mat-header-cell *matHeaderCellDef class="header-bold"> Data da Publicação </th>
+        <td mat-cell *matCellDef="let livro"> {{livro.dt_publicacao | date:'dd/MM/yyyy'}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="autor">
+        <th mat-header-cell *matHeaderCellDef class="header-bold"> Autor </th>
+        <td mat-cell *matCellDef="let livro"> {{livro.autor}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="genero">
+        <th mat-header-cell *matHeaderCellDef class="header-bold"> Gênero </th>
+        <td mat-cell *matCellDef="let livro"> {{livro.genero}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="editora">
+        <th mat-header-cell *matHeaderCellDef class="header-bold"> Editora </th>
+        <td mat-cell *matCellDef="let livro"> {{livro.editora}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef class="header-bold"> Ações </th>
+        <td mat-cell *matCellDef="let livro">
+          <button mat-button color="primary" (click)="irParaDetalhes(livro._id)">Editar</button>
+          <button mat-button color="warn" (click)="excluirLivro(livro._id)">Excluir</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  <!-- Modo de exibição: Card -->
+  <div *ngIf="modoExibicao === 'card'" class="grid-container">
+    <mat-card *ngFor="let livro of livros" class="livro-card">
+      <mat-card-header>
+        <mat-card-title>{{ livro.nome }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Data da Publicação:</strong> {{ livro.dt_publicacao | date:'dd/MM/yyyy' }}</p>
+        <p><strong>Autor:</strong> {{ livro.autor }}</p>
+        <p><strong>Gênero:</strong> {{ livro.genero }}</p>
+        <p><strong>Editora:</strong> {{ livro.editora }}</p>
+      </mat-card-content>
+      <mat-card-actions class="card-actions">
+        <button mat-stroked-button color="primary" (click)="irParaDetalhes(livro._id)" class="botao-container">
+          Editar
+        </button>
+        <button mat-stroked-button color="warn" (click)="excluirLivro(livro._id)" class="botao-container">
+          Excluir
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
