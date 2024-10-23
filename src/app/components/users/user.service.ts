@@ -7,7 +7,7 @@ import { Livro } from '../../model/Livro';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:3000/api/livros';
+  private apiUrl = 'https://biblioteca-back-j8jr.onrender.com/api/livros';
 
   constructor(private http: HttpClient) { }
 
