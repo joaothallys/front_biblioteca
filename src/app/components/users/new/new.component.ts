@@ -41,11 +41,11 @@ export class NewComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.formulario = this.fb.group({
-      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
+      nome: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       dt_publicacao: ['', Validators.required],
-      autor: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]],
-      genero: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      editora: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25)]]
+      autor: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      genero: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
+      editora: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]]
     });
   }
 
@@ -85,4 +85,5 @@ export class NewComponent implements OnInit {
   voltarParaLista() {
     this.router.navigate(['/list']);
   }
+
 }

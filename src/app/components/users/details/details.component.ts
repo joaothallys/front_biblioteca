@@ -2,15 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 import { UserService } from '../user.service';
 import { Livro } from '../../../model/Livro';
 import { CommonModule } from '@angular/common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-new',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatProgressSpinnerModule],
+  imports: [CommonModule, ReactiveFormsModule, MatProgressSpinnerModule, MatFormFieldModule, MatDatepickerModule, MatInputModule, MatNativeDateModule],
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.css']
 })
@@ -18,6 +22,8 @@ export class DetailsComponent implements OnInit {
   formulario: FormGroup;
   livroId: string = '';
   isSubmitting = false;
+  mensagem: string = '';
+  sucesso: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -72,7 +78,7 @@ export class DetailsComponent implements OnInit {
     if (this.formulario.valid) {
       this.isSubmitting = true;
       const livroAtualizado: Livro = { ...this.formulario.value, id: this.livroId };
-
+  
       this.userService.editar(livroAtualizado, this.livroId).subscribe({
         next: (response) => {
           this.snackBar.open('Livro atualizado com sucesso!', 'Fechar', {
@@ -94,12 +100,12 @@ export class DetailsComponent implements OnInit {
           this.isSubmitting = false;
           setTimeout(() => {
             this.voltarParaLista();
-          }, 3000);
+          }, 2000);
         }
       });
     }
   }
-
+  
 
   voltarParaLista() {
     this.router.navigate(['/list']);

@@ -1,21 +1,13 @@
-:host {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centraliza o formulário no contêiner pai */
-  justify-content: center;
-  width: 100%;
-}
-
 .form-container {
   display: flex;
   flex-direction: column;
-  max-width: 600px; /* Limita a largura do formulário */
-  width: 100%; /* Garante que o formulário ocupe toda a largura disponível */
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 auto;
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
 }
 
 .form-title {
@@ -27,19 +19,18 @@
 }
 
 .form-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  width: 100%; /* Garante que cada grupo de formulário ocupe a largura total */
   margin-bottom: 20px;
 }
 
-.mat-form-field {
-  width: 100%; /* Garante que o campo ocupe 100% da largura do pai */
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
 }
 
-.form-input,
-.form-group input[type="date"] {
+.form-input {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -52,11 +43,8 @@
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
-  width: 100%; /* Garante que as ações ocupem a largura completa */
-  flex-wrap: wrap;
 }
 
-/* Botão de Voltar */
 .btn-back {
   background-color: #e0e0e0;
   color: #333;
@@ -64,15 +52,8 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  flex: 1; /* Permite que os botões ocupem o espaço disponível */
-  margin-right: 10px;
 }
 
-.btn-back:hover {
-  background-color: #c0c0c0;
-}
-
-/* Botão de Salvar */
 .btn-save {
   background-color: #3f51b5;
   color: white;
@@ -80,28 +61,8 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1; /* Permite que os botões ocupem o espaço disponível */
 }
 
-.btn-save:disabled {
-  background-color: #9c9c9c;
-  cursor: not-allowed;
-}
-
-.btn-save:hover:not(:disabled) {
+.btn-save:hover {
   background-color: #303f9f;
-}
-
-.button-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.mat-spinner {
-  margin-right: 10px;
 }

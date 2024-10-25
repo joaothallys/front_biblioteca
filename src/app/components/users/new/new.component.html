@@ -5,40 +5,70 @@
     {{ mensagem }}
   </div>
 
-  <div class="form-group">
-    <label for="nome" class="form-label">Nome</label>
-    <input formControlName="nome" id="nome" placeholder="Nome" class="form-input" maxlength="60">
-  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Nome</mat-label>
+    <input matInput formControlName="nome" maxlength="51">
+    <mat-hint align="end">{{ formulario.get('nome')?.value?.length || 0 }}/50</mat-hint>
+    <mat-error *ngIf="formulario.get('nome')?.hasError('required')">
+      Campo obrigatório.
+    </mat-error>
+    <mat-error *ngIf="formulario.get('nome')?.hasError('maxlength')">
+      Máximo de 50 caracteres atingido.
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="dt_publicacao" class="form-label">Data de Publicação</label>
-    <input type="date" formControlName="dt_publicacao" id="dt_publicacao" class="form-input">
-  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Data de Publicação</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="dt_publicacao" placeholder="Escolha a data">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="formulario.get('dt_publicacao')?.hasError('required')">
+      Campo obrigatório.
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="autor" class="form-label">Autor</label>
-    <input formControlName="autor" id="autor" placeholder="Autor" class="form-input" maxlength="60">
-  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Autor</mat-label>
+    <input matInput formControlName="autor" maxlength="60">
+    <mat-hint align="end">{{ formulario.get('autor')?.value?.length || 0 }}/60</mat-hint>
+    <mat-error *ngIf="formulario.get('autor')?.hasError('required')">
+      Campo obrigatório.
+    </mat-error>
+    <mat-error *ngIf="formulario.get('autor')?.hasError('maxlength')">
+      Máximo de 60 caracteres atingido.
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="genero" class="form-label">Gênero</label>
-    <input formControlName="genero" id="genero" placeholder="Gênero" class="form-input" maxlength="60">
-  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Gênero</mat-label>
+    <input matInput formControlName="genero" maxlength="60">
+    <mat-hint align="end">{{ formulario.get('genero')?.value?.length || 0 }}/60</mat-hint>
+    <mat-error *ngIf="formulario.get('genero')?.hasError('required')">
+      Campo obrigatório.
+    </mat-error>
+    <mat-error *ngIf="formulario.get('genero')?.hasError('maxlength')">
+      Máximo de 60 caracteres atingido.
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label for="editora" class="form-label">Editora</label>
-    <input formControlName="editora" id="editora" placeholder="Editora" class="form-input" maxlength="60">
-  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Editora</mat-label>
+    <input matInput formControlName="editora" maxlength="60">
+    <mat-hint align="end">{{ formulario.get('editora')?.value?.length || 0 }}/60</mat-hint>
+    <mat-error *ngIf="formulario.get('editora')?.hasError('required')">
+      Campo obrigatório.
+    </mat-error>
+    <mat-error *ngIf="formulario.get('editora')?.hasError('maxlength')">
+      Máximo de 60 caracteres atingido.
+    </mat-error>
+  </mat-form-field>
 
   <div class="form-actions">
     <button type="button" (click)="voltarParaLista()" class="btn-back">Voltar para Lista</button>
 
-    <button type="submit" class="btn-save" [disabled]="!formulario.valid || isSubmitting">
-      <div class="button-content">
-        <mat-spinner *ngIf="isSubmitting" diameter="20"></mat-spinner>
-        <span *ngIf="!isSubmitting">Salvar Alterações</span>
-      </div>
+    <button type="submit" mat-raised-button class="btn-back" color="primary" [disabled]="!formulario.valid || isSubmitting">
+      <mat-spinner *ngIf="isSubmitting" diameter="20"></mat-spinner>
+      <span *ngIf="!isSubmitting">Salvar Alterações</span>
     </button>
-    
   </div>
 </form>
